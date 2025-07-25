@@ -20,7 +20,7 @@ interface Assistant {
 
 export default function AssistantsList() {
   const [assistants, setAssistants] = useState<Assistant[]>([]);
-  const [singleAssistant, setSingleAssistant] = useState<any>(null);
+  const [singleAssistant, setSingleAssistant] = useState<object | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);

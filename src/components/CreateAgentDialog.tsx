@@ -126,7 +126,7 @@ export default function CreateAgentDialog({
         description: assistantData.description || "",
         systemPrompt: assistantData.system_prompt || "",
         selectedTools: assistantData.tools || [],
-        selectedIndexes: assistantData.index_retrievers?.map((retriever: any) => retriever.index_name) || [],
+        selectedIndexes: assistantData.index_retrievers?.map((retriever: { index_name: string }) => retriever.index_name) || [],
       });
       
       toast.success(`Successfully loaded details for "${assistantName}".`);

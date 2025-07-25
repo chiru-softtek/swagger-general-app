@@ -3,8 +3,22 @@
 import { createContext, useContext, ReactNode } from "react";
 import { useSession } from "next-auth/react";
 
+interface SessionWithAccessToken {
+  user?: {
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+  };
+  accessToken?: string;
+  expires: string;
+}
+
 interface AuthContextType {
-  user: any;
+  user: {
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+  } | undefined;
   isLoading: boolean;
   isAuthenticated: boolean;
   accessToken?: string;
@@ -19,7 +33,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     user: session?.user,
     isLoading: status === "loading",
     isAuthenticated: !!session,
-    accessToken: (session as any)?.accessToken,
+    accessToken: (session as SessionWithAccessToken)?.accessToken,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
